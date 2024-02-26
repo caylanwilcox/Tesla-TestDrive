@@ -19,10 +19,30 @@ const initialParkingSpots = new Array(10).fill(null).map((_, index) => ({
 function App() {
   
   const [inventory, setInventory] = useState([
-    { id: 55566, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: 'John Doe' },
-    { id: 55566, cleanStatus: true, batteryPercentage: 75, inOut: 'out', driver: 'Jane Smith' },
-  ]);
+    { id: 433116, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
+    { id: 977895, cleanStatus: true, batteryPercentage: 75, inOut: 'out', driver: 'Jane Smith' },
+  { id: 985934, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
+  { id: 985965, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
+  { id: 985935, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
+  { id: '006179', cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
+  { id: 985412, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
+  { id: 718342, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
+    { id: 717077, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
+  { id: 717303, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
+
   
+  
+  
+  
+  
+  
+  ]);
+  // Function to replace and add VINsa
+
+
+
+// Call the function to replace and add VINs
+
   const totalTestDriveCars = inventory.length;
   const totalAvailable = inventory.filter(item => item.inOut === 'in').length;
   const totalOut = inventory.filter(item => item.inOut === 'out').length;
