@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Sidebar from './Sidebar.js';
 import DashboardNumbers from './DashboardNumbers.js';
-
+import CleanDirtyToggle from './CleanDirtyToggle';
 // Initial data for parking spots
 
 const initialParkingSpots = new Array(10).fill(null).map((_, index) => ({
@@ -22,6 +22,7 @@ function App() {
     { id: 55566, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: 'John Doe' },
     { id: 55566, cleanStatus: false, batteryPercentage: 75, inOut: 'out', driver: 'Jane Smith' },
   ]);
+  
   const totalTestDriveCars = inventory.length;
   const totalAvailable = inventory.filter(item => item.inOut === 'in').length;
   const totalOut = inventory.filter(item => item.inOut === 'out').length;
@@ -44,7 +45,18 @@ function App() {
       setInventory(updatedInventory);
     }
   };
-
+  const handleToggleCleanStatus = (index) => {
+    setInventory(currentInventory => {
+      // Create a new copy of the inventory array
+      const newInventory = [...currentInventory];
+      // Toggle the clean status of the car at the specific index
+      newInventory[index] = {
+        ...newInventory[index],
+        cleanStatus: !newInventory[index].cleanStatus,
+      };
+      return newInventory; // Return the updated inventory array
+    });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     setInventory((prev) => [...prev, { ...newEntry, id: Date.now() }]);
@@ -79,12 +91,9 @@ function App() {
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>
-                <input 
-                className="checkbox;"
-                  type="checkbox" 
-                  name="cleanStatus" 
-                  checked={item.cleanStatus} 
-                  onChange={(e) => handleChange(e, index)}  // onChange listener for inventory cleanStatus
+                <CleanDirtyToggle
+                  isClean={item.cleanStatus}
+                  onToggle={() => handleToggleCleanStatus(index)}
                 />
               </td>
               <td>

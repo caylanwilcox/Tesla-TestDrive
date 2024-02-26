@@ -77,6 +77,8 @@ form select {
 .number-item .label {
   font-size: 0.9rem; /* Smaller font size for the label */
   color: #333; /* Dark text for readability */
+    white-space: normal; /* Allow the text to wrap */
+  text-align: center; /* Center the text for aesthetics */
 }
 
 table {
@@ -205,4 +207,10 @@ button:hover {
 .label {
   font-size: 14px;
   color: #666666;
+}
+@media screen and (max-width: 480px) {
+  .number-item .label {
+    display: block; /* Ensure the label takes up the full width of its container */
+    margin-top: 5px; /* Add a little space above the label when it wraps */
+  }
 }

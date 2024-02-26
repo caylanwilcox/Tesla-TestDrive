@@ -1,0 +1,27 @@
+/* CleanDirtyToggle.css */
+
+.toggle-button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+  background-color: white;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  /* Adjust the font size as needed */
+  font-size: 0.9em;
+}
+
+.toggle-button.clean {
+  color: #28a745; /* Color for clean status */
+}
+
+.toggle-button.dirty {
+  color: #dc3545; /* Color for dirty status */
+}
+
+/* Hover effects */
+.toggle-button:hover {
+  opacity: 0.8;
+}
