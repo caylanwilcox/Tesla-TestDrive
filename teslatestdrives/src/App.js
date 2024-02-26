@@ -6,7 +6,7 @@ import DashboardNumbers from './DashboardNumbers.js';
 // Initial data for parking spots
 
 const initialParkingSpots = new Array(10).fill(null).map((_, index) => ({
-  id: index,
+  id: '',
   carInfo: {
     cleanStatus: false,
     batteryPercentage: 0,
@@ -18,13 +18,13 @@ const initialParkingSpots = new Array(10).fill(null).map((_, index) => ({
 
 function App() {
   const [inventory, setInventory] = useState([
-    { id: 1, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: 'John Doe' },
-    { id: 2, cleanStatus: false, batteryPercentage: 75, inOut: 'out', driver: 'Jane Smith' },
+    { id: 55566, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: 'John Doe' },
+    { id: 55566, cleanStatus: false, batteryPercentage: 75, inOut: 'out', driver: 'Jane Smith' },
   ]);
   const totalTestDriveCars = inventory.length;
   const totalAvailable = inventory.filter(item => item.inOut === 'in').length;
   const totalOut = inventory.filter(item => item.inOut === 'out').length;
-  const needsCharge = inventory.filter(item => item.batteryPercentage < 65).length; // Example threshold
+  const needsCharge = inventory.filter(item => item.batteryPercentage < 70).length; // Example threshold
 
   const [newEntry, setNewEntry] = useState({ cleanStatus: true, batteryPercentage: 100, inOut: 'in', driver: '' });
 
@@ -64,48 +64,15 @@ function App() {
         totalOut={totalOut}
                 needsCharge={needsCharge}
 
-      />      <h1>Tesla Test Drive Inventory Manager</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Clean Status:
-          <input 
-            type="checkbox" 
-            name="cleanStatus" 
-            checked={newEntry.cleanStatus} 
-            onChange={(e) => handleChange(e, -1)}  // onChange listener for new entry cleanStatus
-          />
-        </label>
-        <label>
-          Battery Percentage:
-          <input 
-            type="number" 
-            name="batteryPercentage" 
-            value={newEntry.batteryPercentage} 
-            onChange={(e) => handleChange(e, -1)}  // onChange listener for new entry batteryPercentage
-          />
-        </label>
-        <label>
-          In/Out:
-          <select 
-            name="inOut" 
-            value={newEntry.inOut} 
-            onChange={(e) => handleChange(e, -1)}  // onChange listener for new entry inOut
-          >
-            <option value="in">In</option>
-            <option value="out">Out</option>
-          </select>
-        </label>
-      
-        <button type="submit">Add Entry</button>
-      </form>
+      />     
+        <div className="table-container">
       <table>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>VIN</th>
             <th>Clean Status</th>
-            <th>Battery Percentage</th>
-            <th>In/Out</th>
-=          </tr>
+            <th>Battery %</th>
+            <th>In/Out</th>       </tr>
         </thead>
         <tbody>
           {inventory.map((item, index) => (
@@ -139,9 +106,12 @@ function App() {
               </td>
             
             </tr>
+            
           ))}
         </tbody>
       </table>
+      </div>
+     
     </div>
   );
 }

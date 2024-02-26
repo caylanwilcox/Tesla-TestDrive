@@ -7,6 +7,7 @@
 }
 
 .container {
+  display: flex;
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -41,46 +42,86 @@ form select {
   border-radius: 4px;
   box-sizing: border-box;
 }
+.App {
+  text-align: center;
+}
+/* Style for the table container if exists */
+.table-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+/* Full-width table with fixed layout */
+/* Style the table to match the design */
+/* Style the dashboard numbers */
+.dashboard-numbers {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff; /* White background */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  margin: 10px 0; /* Margin around the dashboard numbers */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+/* Individual dashboard number blocks */
+.number-item {
+  text-align: center;
+}
+
+.number-item .number {
+  font-size: 1.5rem; /* Larger font size for the number */
+  color: #007bff; /* Blue color for the numbers */
+}
+
+.number-item .label {
+  font-size: 0.9rem; /* Smaller font size for the label */
+  color: #333; /* Dark text for readability */
+}
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Collapse borders for a clean look */
+  margin: 20px 0; /* Margin around the table */
+  background-color: #fff; /* White background for the table */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow like dashboard numbers */
 }
 
-table th,
-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
+th {
+  background-color: #e9ecef; /* Light grey background for headers */
+  color: #333; /* Dark text for headers for readability */
   text-align: left;
+  padding: 10px; /* Padding within headers for space */
 }
 
-table th {
-  background-color: #f2f2f2;
-  color: #333;
+td {
+  padding: 10px; /* Padding within cells for space */
+  border-bottom: 1px solid #e9ecef; /* Light line between rows for definition */
 }
 
-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+/* Input and select styles within the table */
+input, select {
+  width: 100%; /* Full width of cell */
+  padding: 5px; /* Padding for inputs */
+  border: 1px solid #ced4da; /* Border to match design */
+  border-radius: 4px; /* Rounded corners for inputs */
+  box-sizing: border-box; /* Include padding and borders in width */
 }
 
-table tr:hover {
-  background-color: #f0f0f0;
-}
-
+/* Button styles */
 button {
-  width: calc(100% - 20px);
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  background-color: #007bff; /* Blue background for buttons */
+  color: white; /* White text for buttons */
+  padding: 10px 15px; /* Padding for buttons */
+  border: none; /* Remove border for buttons */
+  border-radius: 4px; /* Rounded corners for buttons */
+  cursor: pointer; /* Pointer cursor on hover */
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker blue on hover */
 }
+
 
 @media screen and (max-width: 600px) {
   form input[type='number'],
@@ -164,61 +205,4 @@ button:hover {
 .label {
   font-size: 14px;
   color: #666666;
-}
-/* Assuming your base styles are mobile-first (meaning they are designed for mobile initially),
-   you only need to add media queries for larger screens if that's the case.
-   The following media queries are for larger screens if you're following a mobile-first approach. */
-
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { 
-  /* Adjust styles for small devices here */
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
-  /* Adjust styles for medium devices here */
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { 
-  /* Adjust styles for large devices here */
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
-  /* Adjust styles for extra large devices here */
-}
-
-/* If your base styles are for desktop and you want to adapt for mobile, then you should use max-width in your media queries. */
-/* Example for mobile devices */
-@media (max-width: 575.98px) { 
-  /* Adjust styles for mobile devices here */
-
-  /* Example: Stacking elements instead of side by side */
-  .dashboard-numbers {
-    flex-direction: column;
-  }
-
-  /* Example: Making the sidebar a top bar */
-  .sidebar {
-    width: 100%;
-    height: auto;
-  }
-  
-  /* Example: Adjusting table layout for smaller screens */
-  table {
-    /* You may want to hide certain columns on mobile using display: none; */
-  }
-
-  /* Example: Full-width form inputs */
-  form input[type='text'],
-  form input[type='number'],
-  form select,
-  form button {
-    width: 100%;
-    margin: 0;
-    padding: 10px; /* Adjust padding as needed */
-  }
-  
-  /* And other styles you need to adjust for mobile */
 }
