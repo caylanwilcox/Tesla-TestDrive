@@ -22,7 +22,6 @@ function App() {
     { id: 55566, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: 'John Doe' },
     { id: 55566, cleanStatus: false, batteryPercentage: 75, inOut: 'out', driver: 'Jane Smith' },
   ]);
-  
   const totalTestDriveCars = inventory.length;
   const totalAvailable = inventory.filter(item => item.inOut === 'in').length;
   const totalOut = inventory.filter(item => item.inOut === 'out').length;
@@ -65,7 +64,6 @@ function App() {
         totalAvailable={totalAvailable} 
         totalOut={totalOut}
                 needsCharge={needsCharge}
-        dirtyCars={dirtyCars} 
       />     
         <div className="table-container">
       <table>
