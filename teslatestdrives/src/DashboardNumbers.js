@@ -15,10 +15,7 @@ function DashboardNumbers({ totalTestDriveCars, totalAvailable, totalOut, needsC
         <span className="number">{totalOut}</span>
         <span className="label">Cars Out</span>
       </div>
-        <div className="number-item">
-        <span className="number">{dirtyCars}</span>
-        <span className="label">Dirty Cars</span>
-      </div>
+      
       <div className="number-item">
         <span className="number">{needsCharge}</span>
         <span className="label">Needs Charge</span>
