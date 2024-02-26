@@ -10,7 +10,7 @@
   display: flex;
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -120,9 +120,7 @@ button {
   cursor: pointer; /* Pointer cursor on hover */
 }
 
-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
+
 
 
 @media screen and (max-width: 600px) {
