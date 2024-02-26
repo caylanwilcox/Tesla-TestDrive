@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import Sidebar from './Sidebar.js';
+import DashboardNumbers from './DashboardNumbers.js';
+
 // Initial data for parking spots
 
 const initialParkingSpots = new Array(10).fill(null).map((_, index) => ({
@@ -22,14 +24,24 @@ function App() {
   const totalTestDriveCars = inventory.length;
   const totalAvailable = inventory.filter(item => item.inOut === 'in').length;
   const totalOut = inventory.filter(item => item.inOut === 'out').length;
+  const needsCharge = inventory.filter(item => item.batteryPercentage < 65).length; // Example threshold
 
   const [newEntry, setNewEntry] = useState({ cleanStatus: true, batteryPercentage: 100, inOut: 'in', driver: '' });
 
-  const handleChange = (e, index) => {
+    const handleChange = (e, index) => {
     const { name, value, type, checked } = e.target;
-    const updatedInventory = [...inventory];
-    updatedInventory[index][name] = type === 'checkbox' ? checked : value;
-    setInventory(updatedInventory);
+
+    if (index === -1) { // This is for the new entry form
+      setNewEntry({
+        ...newEntry,
+        [name]: type === 'checkbox' ? checked : value,
+      });
+    } else { // This is for existing inventory items
+      const updatedInventory = [...inventory];
+      const item = updatedInventory[index];
+      item[name] = type === 'checkbox' ? checked : value;
+      setInventory(updatedInventory);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -44,29 +56,46 @@ function App() {
 
   return (
     <div className="App">
-          <Sidebar totalTestDriveCars={totalTestDriveCars} totalAvailable={totalAvailable} totalOut={totalOut} />
+      <Sidebar  />
+      
+  <DashboardNumbers 
+        totalTestDriveCars={totalTestDriveCars} 
+        totalAvailable={totalAvailable} 
+        totalOut={totalOut}
+                needsCharge={needsCharge}
 
-      <h1>Tesla Test Drive Inventory Manager</h1>
+      />      <h1>Tesla Test Drive Inventory Manager</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Clean Status:
-          <input type="checkbox" name="cleanStatus" checked={newEntry.cleanStatus} onChange={(e) => handleChange(e, -1)} />
+          <input 
+            type="checkbox" 
+            name="cleanStatus" 
+            checked={newEntry.cleanStatus} 
+            onChange={(e) => handleChange(e, -1)}  // onChange listener for new entry cleanStatus
+          />
         </label>
         <label>
           Battery Percentage:
-          <input type="number" name="batteryPercentage" value={newEntry.batteryPercentage} onChange={(e) => handleChange(e, -1)} />
+          <input 
+            type="number" 
+            name="batteryPercentage" 
+            value={newEntry.batteryPercentage} 
+            onChange={(e) => handleChange(e, -1)}  // onChange listener for new entry batteryPercentage
+          />
         </label>
         <label>
           In/Out:
-          <select name="inOut" value={newEntry.inOut} onChange={(e) => handleChange(e, -1)}>
+          <select 
+            name="inOut" 
+            value={newEntry.inOut} 
+            onChange={(e) => handleChange(e, -1)}  // onChange listener for new entry inOut
+          >
             <option value="in">In</option>
             <option value="out">Out</option>
           </select>
         </label>
-        <label>
-          Driver:
-          <input type="text" name="driver" value={newEntry.driver} onChange={(e) => handleChange(e, -1)} />
-        </label>
+      
         <button type="submit">Add Entry</button>
       </form>
       <table>
@@ -76,26 +105,39 @@ function App() {
             <th>Clean Status</th>
             <th>Battery Percentage</th>
             <th>In/Out</th>
-            <th>Driver</th>
-            <th>Action</th>
-          </tr>
+=          </tr>
         </thead>
         <tbody>
           {inventory.map((item, index) => (
             <tr key={item.id}>
               <td>{item.id}</td>
-              <td><input type="checkbox" name="cleanStatus" checked={item.cleanStatus} onChange={(e) => handleChange(e, index)} /></td>
-              <td><input type="number" name="batteryPercentage" value={item.batteryPercentage} onChange={(e) => handleChange(e, index)} /></td>
               <td>
-                <select name="inOut" value={item.inOut} onChange={(e) => handleChange(e, index)}>
+                <input 
+                  type="checkbox" 
+                  name="cleanStatus" 
+                  checked={item.cleanStatus} 
+                  onChange={(e) => handleChange(e, index)}  // onChange listener for inventory cleanStatus
+                />
+              </td>
+              <td>
+                <input 
+                  type="number" 
+                  name="batteryPercentage" 
+                  value={item.batteryPercentage} 
+                  onChange={(e) => handleChange(e, index)}  // onChange listener for inventory batteryPercentage
+                />
+              </td>
+              <td>
+                <select 
+                  name="inOut" 
+                  value={item.inOut} 
+                  onChange={(e) => handleChange(e, index)}  // onChange listener for inventory inOut
+                >
                   <option value="in">In</option>
                   <option value="out">Out</option>
                 </select>
               </td>
-              <td><input type="text" name="driver" value={item.driver} onChange={(e) => handleChange(e, index)} /></td>
-              <td>
-                <button onClick={() => handleDelete(item.id)}>Delete</button>
-              </td>
+            
             </tr>
           ))}
         </tbody>
@@ -103,4 +145,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
