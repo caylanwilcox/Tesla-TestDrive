@@ -20,7 +20,7 @@ function App() {
   
   const [inventory, setInventory] = useState([
     { id: 55566, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: 'John Doe' },
-    { id: 55566, cleanStatus: false, batteryPercentage: 75, inOut: 'out', driver: 'Jane Smith' },
+    { id: 55566, cleanStatus: true, batteryPercentage: 75, inOut: 'out', driver: 'Jane Smith' },
   ]);
   
   const totalTestDriveCars = inventory.length;
