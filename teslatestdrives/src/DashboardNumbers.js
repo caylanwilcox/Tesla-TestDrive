@@ -1,11 +1,11 @@
 import React from 'react';
 
-function DashboardNumbers({ totalTestDriveCars, totalAvailable, totalOut, needsCharge }) {
+function DashboardNumbers({ totalTestDriveCars, totalAvailable, totalOut, needsCharge,dirtyCars  }) {
   return (
     <div className="dashboard-numbers">
       <div className="number-item">
         <span className="number">{totalTestDriveCars}</span>
-        <span className="label">Total Marketing Cars</span>
+        <span className="label">Total Cars</span>
       </div>
       <div className="number-item">
         <span className="number">{totalAvailable}</span>
@@ -14,6 +14,10 @@ function DashboardNumbers({ totalTestDriveCars, totalAvailable, totalOut, needsC
       <div className="number-item">
         <span className="number">{totalOut}</span>
         <span className="label">Cars Out</span>
+      </div>
+        <div className="number-item">
+        <span className="number">{dirtyCars}</span>
+        <span className="label">Dirty Cars</span>
       </div>
       <div className="number-item">
         <span className="number">{needsCharge}</span>
