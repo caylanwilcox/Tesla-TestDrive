@@ -120,6 +120,7 @@ function App() {
                 <input 
                   type="number" 
                   name="batteryPercentage" 
+                  className="batteryPercentage"
                   value={item.batteryPercentage} 
                   onChange={(e) => handleChange(e, index)}  // onChange listener for inventory batteryPercentage
                 />
@@ -127,6 +128,7 @@ function App() {
               <td>
                 <select 
                   name="inOut" 
+                  className="inOut"
                   value={item.inOut} 
                   onChange={(e) => handleChange(e, index)}  // onChange listener for inventory inOut
                 >

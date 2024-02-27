@@ -81,6 +81,7 @@ form select {
   text-align: center; /* Center the text for aesthetics */
 }
 
+
 table {
   width: 100%; /* Full width */
   border-collapse: collapse; /* Collapse borders for a clean look */
@@ -96,6 +97,46 @@ th {
   padding: 10px; /* Padding within headers for space */
 }
 
+td {
+  padding: 10px; /* Padding within cells for space */
+  border-bottom: 1px solid #e9ecef; /* Light line between rows for definition */
+}
+
+
+th, td {
+
+  text-align: center;
+  padding: 8px;
+}
+.batteryPercentage{
+  width:50px;
+}
+.inOut{
+  width:70px;
+}
+/* Ensure the width of th and td elements are the same for each column */
+th:nth-child(1), td:nth-child(1) {
+  /* Adjust the width as needed for VIN column */
+  width: 20%;
+}
+
+th:nth-child(2), td:nth-child(2) {
+  /* Adjust the width as needed for Clean Status column */
+  width: 13%;
+}
+
+th:nth-child(3), td:nth-child(3) {
+  /* Adjust the width as needed for Battery % column */
+  width: 20%;
+  
+/* Padding within headers for space */
+}
+th:nth-child(4), td:nth-child(4) {
+  /* Adjust the width as needed for Battery % column */
+  width: 20%;
+  
+/* Padding within headers for space */
+}
 td {
   padding: 10px; /* Padding within cells for space */
   border-bottom: 1px solid #e9ecef; /* Light line between rows for definition */
