@@ -1,0 +1,16 @@
+
+[
+  { "id": 724382, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model": "WB319" },
+  { "id": 977895, "cleanStatus": true, "batteryPercentage": 75, "inOut": "out", "driver": "" },
+  { "id": 985934, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "" },
+  { "id": 985965, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "" },
+  { "id": 985935, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "" },
+  { "id": "006179", "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "" },
+  { "id": 985412, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "" },
+  { "id": 718342, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "" },
+  { "id": 717077, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "" },
+  { "id": 717303, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "" }
+]
+
+
+

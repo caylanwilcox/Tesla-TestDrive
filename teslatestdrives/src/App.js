@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Sidebar from './Sidebar.js';
 import DashboardNumbers from './DashboardNumbers.js';
 import CleanDirtyToggle from './CleanDirtyToggle';
+
+import { Route, Routes, Link } from 'react-router-dom';
+import Dashboard from './Dashboard';
 // Initial data for parking spots
 
 const initialParkingSpots = new Array(10).fill(null).map((_, index) => ({
@@ -18,25 +21,23 @@ const initialParkingSpots = new Array(10).fill(null).map((_, index) => ({
 
 function App() {
   
-  const [inventory, setInventory] = useState([
-    { id: 433116, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
-    { id: 977895, cleanStatus: true, batteryPercentage: 75, inOut: 'out', driver: 'Jane Smith' },
-  { id: 985934, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
-  { id: 985965, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
-  { id: 985935, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
-  { id: '006179', cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
-  { id: 985412, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
-  { id: 718342, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
-    { id: 717077, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
-  { id: 717303, cleanStatus: true, batteryPercentage: 90, inOut: 'in', driver: '' },
+  const [inventory, setInventory] = useState([]);
+useEffect(() => {
+  fetch('/cars.json') // Assuming cars.json is in the public folder
+    .then(response => response.json())
+    .then(data => {
+      const inventoryWithImages = data.map(car => ({
+        ...car,
+        // Create the image path by appending the model code to the path
+        imagePath: `/images/${car.model}/${car.model}.png` // Adjust this path based on your actual image folder structure
+      }));
+      setInventory(inventoryWithImages);
+    })
+    .catch(error => console.error('Failed to load car data:', error));
+}, []);
 
   
-  
-  
-  
-  
-  
-  ]);
+
   // Function to replace and add VINsa
 
 
@@ -87,63 +88,75 @@ function App() {
     setInventory((prev) => prev.filter((item) => item.id !== id));
   };
 
-  return (
+ return (
     <div className="App">
-      <Sidebar  />
-      
-  <DashboardNumbers 
-        totalTestDriveCars={totalTestDriveCars} 
-        totalAvailable={totalAvailable} 
-        totalOut={totalOut}
-                needsCharge={needsCharge}
-      />     
-        <div className="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>VIN</th>
-            <th>Clean Status</th>
-            <th>Battery %</th>
-            <th>In/Out</th>       </tr>
-        </thead>
-        <tbody>
-          {inventory.map((item, index) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>
-                <CleanDirtyToggle
-                  isClean={item.cleanStatus}
-                  onToggle={() => handleToggleCleanStatus(index)}
-                />
-              </td>
-              <td>
-                <input 
-                  type="number" 
-                  name="batteryPercentage" 
-                  className="batteryPercentage"
-                  value={item.batteryPercentage} 
-                  onChange={(e) => handleChange(e, index)}  // onChange listener for inventory batteryPercentage
-                />
-              </td>
-              <td>
-                <select 
-                  name="inOut" 
-                  className="inOut"
-                  value={item.inOut} 
-                  onChange={(e) => handleChange(e, index)}  // onChange listener for inventory inOut
-                >
-                  <option value="in">In</option>
-                  <option value="out">Out</option>
-                </select>
-              </td>
-            
-            </tr>
-            
-          ))}
-        </tbody>
-      </table>
+      <Sidebar />
+      {/* Navigation Links - Make sure these are outside of your Routes if you want them accessible from everywhere */}
+      <div className="navigation-links">
+        <Link to="/dashboard" className="dashboard-link">Go to Dashboard</Link>
+        <Link to="/inventory" className="inventory-link">View Inventory</Link>
       </div>
-     
+
+      {/* Define your Routes */}
+      <Routes>
+        {/* Define the home route */}
+        <Route path="/" element={<DashboardNumbers 
+          totalTestDriveCars={totalTestDriveCars} 
+          totalAvailable={totalAvailable} 
+          totalOut={totalOut}
+          needsCharge={needsCharge} />} 
+        />
+        {/* Define the dashboard route which will only show the Dashboard content */}
+        <Route path="/dashboard" element={<Dashboard inventory={inventory} />} />
+        {/* Define the inventory route which will only show the inventory list */}
+        <Route path="/inventory" element={
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>VIN</th>
+                  <th>Clean Status</th>
+                  <th>Battery %</th>
+                  <th>In/Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                {inventory.map((item, index) => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>
+                      <CleanDirtyToggle
+                        isClean={item.cleanStatus}
+                        onToggle={() => handleToggleCleanStatus(index)}
+                      />
+                    </td>
+                    <td>
+                      <input 
+                        type="number" 
+                        name="batteryPercentage" 
+                        className="batteryPercentage"
+                        value={item.batteryPercentage} 
+                        onChange={(e) => handleChange(e, index)}
+                      />
+                    </td>
+                    <td>
+                      <select 
+                        name="inOut" 
+                        className="inOut"
+                        value={item.inOut} 
+                        onChange={(e) => handleChange(e, index)}
+                      >
+                        <option value="in">In</option>
+                        <option value="out">Out</option>
+                      </select>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        } />
+      </Routes>
     </div>
   );
 }
