@@ -1,23 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Sidebar from './Sidebar.js';
+import Header from './Header.js';
 import DashboardNumbers from './DashboardNumbers.js';
 import CleanDirtyToggle from './CleanDirtyToggle';
 
 import { Route, Routes, Link } from 'react-router-dom';
 import Dashboard from './Dashboard';
 // Initial data for parking spots
-
-const initialParkingSpots = new Array(10).fill(null).map((_, index) => ({
-  id: '',
-  carInfo: {
-    cleanStatus: false,
-    batteryPercentage: 0,
-    inOut: 'in', // Assuming 'in' as default
-    driver: ''
-  },
-  occupied: false
-}));
 
 function App() {
   
@@ -29,17 +18,14 @@ useEffect(() => {
       const inventoryWithImages = data.map(car => ({
         ...car,
         // Create the image path by appending the model code to the path
-        imagePath: `/images/${car.model}/${car.model}.png` // Adjust this path based on your actual image folder structure
+        imagePath: `/images/${car.model}/${car.wheel}/${car.color}/${car.name}.png`
       }));
       setInventory(inventoryWithImages);
     })
     .catch(error => console.error('Failed to load car data:', error));
 }, []);
 
-  
-
-  // Function to replace and add VINsa
-
+    // Function to replace and add VINsa
 
 
 // Call the function to replace and add VINs
@@ -90,7 +76,7 @@ useEffect(() => {
 
  return (
     <div className="App">
-      <Sidebar />
+     
       {/* Navigation Links - Make sure these are outside of your Routes if you want them accessible from everywhere */}
       <div className="navigation-links">
         <Link to="/dashboard" className="dashboard-link">Go to Dashboard</Link>
@@ -98,8 +84,10 @@ useEffect(() => {
       </div>
 
       {/* Define your Routes */}
+    
       <Routes>
         {/* Define the home route */}
+        
         <Route path="/" element={<DashboardNumbers 
           totalTestDriveCars={totalTestDriveCars} 
           totalAvailable={totalAvailable} 
@@ -109,6 +97,7 @@ useEffect(() => {
         {/* Define the dashboard route which will only show the Dashboard content */}
         <Route path="/dashboard" element={<Dashboard inventory={inventory} />} />
         {/* Define the inventory route which will only show the inventory list */}
+        
         <Route path="/inventory" element={
           <div className="table-container">
             <table>

@@ -1,75 +1,45 @@
-.dashboard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #0077CC;
-  border-radius: 20px;
-  color: white;
-  font-family: 'Arial', sans-serif;
-}
+/* Dashboard.css */
 
-.header {
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
-.grid-container {
+.dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  grid-gap: 20px;
-  width: 100%;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Creates a responsive grid layout */
+  gap: 1rem; /* Spacing between grid items */
+  padding: 1rem; /* Padding around the entire grid */
+  background-color: #f5f5f5; /* Light background color for the dashboard */
 }
 
 .grid-item {
-  border: 1px solid #ffffff66; /* Light white border */
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
+  background: #ffffff; /* White background for each grid item */
+  border-radius: 10px; /* Rounded corners for grid items */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  overflow: hidden; /* Ensures content does not flow outside the boundary */
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
 }
 
-.grid-item img {
-  width: 100%; /* You might want to adjust this */
-  height: auto;
-  margin-bottom: 10px;
+.grid-item:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
 }
 
-.car-info {
-  display: flex;
-  flex-direction: column;
+.car-image {
+  width: 100%; /* Ensures the image takes up the full width of its container */
+  height: auto; /* Maintains the aspect ratio of the image */
+  object-fit: cover; /* Ensures the image covers the area, might cut off some parts */
+}
+
+.grid-item-content {
+  padding: 0.5rem; /* Padding within the content area of the grid item */
 }
 
 .car-model {
-  font-weight: bold;
-  margin-bottom: 5px;
+  color: #333; /* Dark text color for the car model */
+  font-size: 1.2rem; /* Slightly larger font size for the car model */
+  margin: 0.5rem 0; /* Margin around the car model for spacing */
 }
 
-.car-status {
-  font-size: 0.85em;
-  color: #90EE90; /* Light green, assuming availability is good */
-}
-/* App.css */
-
-.inventory-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px; /* Adjust as needed for spacing */
+.car-detail {
+  color: #666; /* Lighter text color for car details */
+  font-size: 0.9rem; /* Smaller font size for details */
+  margin: 0.25rem 0; /* Smaller margin for a compact look */
 }
 
-.inventory-item {
-  width: 200px; /* Adjust as needed */
-  height: 120px; /* Adjust as needed */
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end; /* Align car info at the bottom */
-  padding: 10px;
-  color: white; /* Assuming white text for visibility */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional: for better readability */
-}
-
-.car-info {
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for better readability */
-  width: 100%;
-}
+/* Add additional styles and media queries for responsiveness as needed */

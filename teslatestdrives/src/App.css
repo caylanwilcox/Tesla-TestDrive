@@ -6,15 +6,6 @@
   padding: 0;
 }
 
-.container {
-  display: flex;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
 h1 {
   text-align: center;
@@ -26,30 +17,6 @@ form label {
   display: block;
   margin-bottom: 5px;
   color: #333;
-}
-/* App.css */
-
-.inventory-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px; /* Adjust as needed for spacing */
-}
-
-.inventory-item {
-  width: 200px; /* Adjust as needed */
-  height: 120px; /* Adjust as needed */
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end; /* Align car info at the bottom */
-  padding: 10px;
-  color: white; /* Assuming white text for visibility */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional: for better readability */
-}
-
-.car-info {
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for better readability */
-  width: 100%;
 }
 
 form input[type='checkbox'] {

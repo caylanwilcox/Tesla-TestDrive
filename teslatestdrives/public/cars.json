@@ -1,6 +1,6 @@
 
 [
-  { "id": 724382, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model": "WB319" },
+  { "id": 724382, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"Model3","name": "WB319", "wheel":"18" },
   { "id": 977895, "cleanStatus": true, "batteryPercentage": 75, "inOut": "out", "driver": "" },
   { "id": 985934, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "" },
   { "id": 985965, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "" },

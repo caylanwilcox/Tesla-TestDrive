@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Sidebar() {
+function Header() {
   return (
-    <div className="sidebar">
+    <div className="HEADER">
       <h2> Test Drive Dashboard</h2>
       </div>
 
@@ -10,4 +10,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default Header;
