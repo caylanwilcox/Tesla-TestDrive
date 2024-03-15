@@ -17,9 +17,9 @@ useEffect(() => {
     .then(data => {
       const inventoryWithImages = data.map(car => ({
         ...car,
-        // Create the image path by appending the model code to the path
-        imagePath: `/images/${car.model}/${car.wheel}/${car.color}/${car.name}.png`
-      }));
+       imagePath: `/images/${car.model}/${car.wheel}/${car.color}/${car.name}.png`
+//     
+}));
       setInventory(inventoryWithImages);
     })
     .catch(error => console.error('Failed to load car data:', error));
@@ -99,52 +99,58 @@ useEffect(() => {
         {/* Define the inventory route which will only show the inventory list */}
         
         <Route path="/inventory" element={
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>VIN</th>
-                  <th>Clean Status</th>
-                  <th>Battery %</th>
-                  <th>In/Out</th>
-                </tr>
-              </thead>
-              <tbody>
-                {inventory.map((item, index) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>
-                      <CleanDirtyToggle
-                        isClean={item.cleanStatus}
-                        onToggle={() => handleToggleCleanStatus(index)}
-                      />
-                    </td>
-                    <td>
-                      <input 
-                        type="number" 
-                        name="batteryPercentage" 
-                        className="batteryPercentage"
-                        value={item.batteryPercentage} 
-                        onChange={(e) => handleChange(e, index)}
-                      />
-                    </td>
-                    <td>
-                      <select 
-                        name="inOut" 
-                        className="inOut"
-                        value={item.inOut} 
-                        onChange={(e) => handleChange(e, index)}
-                      >
-                        <option value="in">In</option>
-                        <option value="out">Out</option>
-                      </select>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        } />
+        <>
+        <Header/>
+            <div className="table-container">
+      <table>
+        <thead>
+          <tr>
+          <th>Trim</th>
+            <th>VIN</th>
+             {/* Added Trim header */}
+            <th>Clean Status</th>
+            <th>Battery %</th>
+            <th>In/Out</th>
+          </tr>
+        </thead>
+        <tbody>
+          {inventory.map((item, index) => (
+            <tr key={item.id}>
+              <td>{item.trim}</td> {/* Added Trim data cell */}
+              <td>{item.id}</td>
+            
+              <td>
+                <CleanDirtyToggle
+                  isClean={item.cleanStatus}
+                  onToggle={() => handleToggleCleanStatus(index)}
+                />
+              </td>
+              <td>
+                <input 
+                  type="number" 
+                  name="batteryPercentage" 
+                  className="batteryPercentage"
+                  value={item.batteryPercentage} 
+                  onChange={(e) => handleChange(e, index)}
+                />
+              </td>
+              <td>
+                <select 
+                  name="inOut" 
+                  className="inOut"
+                  value={item.inOut} 
+                  onChange={(e) => handleChange(e, index)}
+                >
+                  <option value="in">In</option>
+                  <option value="out">Out</option>
+                </select>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+       </> } />
       </Routes>
     </div>
   );

@@ -1,45 +1,89 @@
-/* Dashboard.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure the body takes the full viewport height */
+  overflow: hidden; /* Prevent scrolling on the page */
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Make the dashboard the full height of the viewport */
+  overflow: hidden; /* Prevent scrolling within the dashboard */
+}
+
+.model-group {
+  flex: 1; /* Distribute space equally among model groups */
+  overflow: hidden; /* No scrolling within a model group */
+  margin-bottom: 16px; /* Space between model groups */
+  display: flex;
+  flex-direction: column;
+}
+
+.model-group-header {
+  background: #e0e0e0;
+  color: #333;
+  text-align: center;
+  padding: 4px 0; /* Reduced padding */
+  font-size: 1rem; /* Adjust font size */
+}
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Creates a responsive grid layout */
-  gap: 1rem; /* Spacing between grid items */
-  padding: 1rem; /* Padding around the entire grid */
-  background-color: #f5f5f5; /* Light background color for the dashboard */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 8px; /* Reduced gap */
+  padding: 8px; /* Reduced padding */
+  flex-grow: 1; /* Allow grid to fill the space */
+  overflow: hidden; /* No scrolling within the grid */
 }
 
 .grid-item {
-  background: #ffffff; /* White background for each grid item */
-  border-radius: 10px; /* Rounded corners for grid items */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  overflow: hidden; /* Ensures content does not flow outside the boundary */
-  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.grid-item:hover {
-  transform: translateY(-5px); /* Slight lift effect on hover */
+.car-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-container {
+  padding: 8px; /* Reduced padding */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .car-image {
-  width: 100%; /* Ensures the image takes up the full width of its container */
-  height: auto; /* Maintains the aspect ratio of the image */
-  object-fit: cover; /* Ensures the image covers the area, might cut off some parts */
+  max-width: 100%;
+  max-height: 100px; /* Set a max height for images */
+  object-fit: contain; /* Adjust this as needed */
 }
 
-.grid-item-content {
-  padding: 0.5rem; /* Padding within the content area of the grid item */
+.car-info {
+  padding: 8px; /* Reduced padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1; /* Allow car info to grow */
 }
 
-.car-model {
-  color: #333; /* Dark text color for the car model */
-  font-size: 1.2rem; /* Slightly larger font size for the car model */
-  margin: 0.5rem 0; /* Margin around the car model for spacing */
+.car-vin {
+  background: #00457C;
+  color: #ffffff;
+  text-align: center;
+  padding: 4px 0; /* Reduced padding */
+  font-weight: bold;
+  font-size: 0.85rem; /* Adjust font size */
 }
 
-.car-detail {
-  color: #666; /* Lighter text color for car details */
-  font-size: 0.9rem; /* Smaller font size for details */
-  margin: 0.25rem 0; /* Smaller margin for a compact look */
+/* Ensure that text doesn't overflow its container */
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-/* Add additional styles and media queries for responsiveness as needed */
