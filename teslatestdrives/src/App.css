@@ -247,3 +247,31 @@ button {
     margin-top: 5px; /* Add a little space above the label when it wraps */
   }
 }
+@media screen and (max-width: 600px) {
+  .table-container {
+    margin: 0; /* Remove margin for full-width on mobile */
+  }
+
+  .dashboard-numbers {
+    flex-direction: column; /* Stack the dashboard numbers on top of each other */
+  }
+
+  .number-item {
+    margin-bottom: 20px; /* Add space between stacked items */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Adjust styles for very small screens if necessary */
+  .number-item .label {
+    font-size: 0.85rem; /* Adjust font size for labels */
+  }
+
+  table {
+    font-size: 0.85rem; /* Adjust table font size for readability */
+  }
+
+  th, td {
+    padding: 6px; /* Reduce padding in table headers and cells */
+  }
+}
