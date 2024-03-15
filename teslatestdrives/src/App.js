@@ -80,7 +80,7 @@ useEffect(() => {
       {/* Navigation Links - Make sure these are outside of your Routes if you want them accessible from everywhere */}
       <div className="navigation-links">
         <Link to="/dashboard" className="dashboard-link">Go to Dashboard</Link>
-        <Link to="/inventory" className="inventory-link">View Inventory</Link>
+        <Link to="/" className="inventory-link">View Inventory</Link> {/* Updated to root path */}
       </div>
 
       {/* Define your Routes */}
@@ -93,14 +93,15 @@ useEffect(() => {
         <Route path="/dashboard" element={<Dashboard inventory={inventory} />} />
         {/* Define the inventory route which will only show the inventory list */}
         
-        <Route path="/inventory" element={
-        <>
-        <Header/>
-        <DashboardNumbers 
-          totalTestDriveCars={totalTestDriveCars} 
-          totalAvailable={totalAvailable} 
-          totalOut={totalOut}
-          needsCharge={needsCharge} />
+        <Route path="/" element={
+          <>
+            <Header />
+            <DashboardNumbers 
+              totalTestDriveCars={totalTestDriveCars} 
+              totalAvailable={totalAvailable} 
+              totalOut={totalOut}
+              needsCharge={needsCharge} 
+            />
             <div className="table-container">
       <table>
         <thead>
