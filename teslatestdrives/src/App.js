@@ -88,12 +88,7 @@ useEffect(() => {
       <Routes>
         {/* Define the home route */}
         
-        <Route path="/" element={<DashboardNumbers 
-          totalTestDriveCars={totalTestDriveCars} 
-          totalAvailable={totalAvailable} 
-          totalOut={totalOut}
-          needsCharge={needsCharge} />} 
-        />
+       
         {/* Define the dashboard route which will only show the Dashboard content */}
         <Route path="/dashboard" element={<Dashboard inventory={inventory} />} />
         {/* Define the inventory route which will only show the inventory list */}
@@ -101,6 +96,11 @@ useEffect(() => {
         <Route path="/inventory" element={
         <>
         <Header/>
+        <DashboardNumbers 
+          totalTestDriveCars={totalTestDriveCars} 
+          totalAvailable={totalAvailable} 
+          totalOut={totalOut}
+          needsCharge={needsCharge} />
             <div className="table-container">
       <table>
         <thead>

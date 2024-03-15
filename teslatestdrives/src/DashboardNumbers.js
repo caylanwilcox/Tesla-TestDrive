@@ -11,7 +11,7 @@ function DashboardNumbers({ totalTestDriveCars, totalAvailable, totalOut, needsC
         <span className="number">{totalAvailable}</span>
         <span className="label">Available</span>
       </div>
-      <div className="number-item">v
+      <div className="number-item">
         <span className="number">{totalOut}</span>
         <span className="label">Out</span>
       </div>
