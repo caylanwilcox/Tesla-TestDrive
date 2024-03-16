@@ -1,3 +1,7 @@
+
+
+
+
 body, html {
   margin: 0;
   padding: 0;
@@ -76,6 +80,7 @@ body, html {
   color: #ffffff;
   text-align: center;
   padding: 4px 0; /* Reduced padding */
+  margin-top: auto;
   font-weight: bold;
   font-size: 0.85rem; /* Adjust font size */
 }
@@ -85,4 +90,39 @@ body, html {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.status-clean {
+  color: green;
+  font-family: inherit;
+  font-weight: bold;
+}
+
+.status-dirty {
+  color: red;
+    font-weight: bold;
+
+}
+
+.battery-high {
+  color: green;
+    font-weight: bold;
+
+}
+
+.battery-low {
+  color: red;
+    font-weight: bold;
+
+}
+
+.location-in {
+  color: green;
+    font-weight: bold;
+
+}
+
+.location-out {
+  color: red;
+    font-weight: bold;
+
 }
