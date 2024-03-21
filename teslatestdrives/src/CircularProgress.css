@@ -1,0 +1,19 @@
+@keyframes progress-animation {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 283; /* Replace this with the actual stroke-dashoffset calculated based on the progress */
+  }
+}
+
+circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* Use this class to animate the progress */
+.animated-progress {
+  animation: progress-animation 2s linear forwards;
+}

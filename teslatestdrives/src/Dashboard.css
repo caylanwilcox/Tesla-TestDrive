@@ -1,128 +1,141 @@
-
-
-
-
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%; /* Ensure the body takes the full viewport height */
-}
-
+/* Main dashboard container styling */
 .dashboard {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Make the dashboard the full height of the viewport */
-  overflow: hidden; /* Prevent scrolling within the dashboard */
+  height: 95vh; /* Full viewport height */
+  overflow: hidden; /* Prevent scrolling */
+  color: #dcdcdc;
+  background-color: #1a1a1a;
 }
 
+/* Header and navigation links */
+.navigation-links {
+  display: flex;
+  justify-content: space-between;
+  height: 3.5vh; /* Adjust based on actual header/navigation height */
+  padding: 1vh 2vw; /* Use viewport units for responsive padding */
+  background: #333;
+}
+
+/* Style for individual model groups and their headers */
 .model-group {
-  flex: 1; /* Distribute space equally among model groups */
-  overflow: hidden; /* No scrolling within a model group */
-  margin-bottom: 16px; /* Space between model groups */
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* Prevent scrolling within each model group */
 }
 
 .model-group-header {
-  background: #e0e0e0;
-  color: #333;
-  text-align: center;
-  padding: 4px 0; /* Reduced padding */
-  font-size: 1rem; /* Adjust font size */
+  padding: 1vh 1vw;
+  background-color: #444;
+  color: #fff;
+  border-bottom: 1px solid #555;
 }
 
+/* Grid layout for car items */
 .dashboard-grid {
+  flex-grow: 1; /* Allow the grid to take up the remaining space */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 8px; /* Reduced gap */
-  padding: 8px; /* Reduced padding */
-  flex-grow: 1; /* Allow grid to fill the space */
-  overflow: hidden; /* No scrolling within the grid */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust column size as needed */
+  gap: 10px;
+  overflow: hidden; /* Changed to hidden to prevent scrolling */
+}
+.battery-low .car-image {
+  /* Styles for low battery status, e.g., add a red border */
+  border: 2px solid red;
 }
 
+.low-battery-warning {
+  /* Style for the low battery warning text */
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* ... other styles ... */
+
+/* Individual car items */
 .grid-item {
-  border: 1px solid #ccc;
+  background-color: #242424;
+  border: 1px solid #444;
+  padding: 1vw;
   border-radius: 8px;
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.car-header {
-  display: flex;
-  justify-content: space-between;
+/* Special layout for Model S and Model X for full screens */
+@media (min-width: 768px) {
+  .model-S .dashboard-grid,
+  .model-X .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr); /* Two columns for Model S and X */
+  }
+}
+.battery-high .car-status, .battery-high .car-vin {
+  color: #00ff00; /* Green color for high battery level */
+}
+.battery-low .car-status, .battery-low .car-vin {
+  color: #ff0000; /* Red color for low battery level */
+}
+/* Content inside each car item */
+.car-header, .car-info {
+  margin-bottom: 1vh;
 }
 
-.image-container {
-  padding: 8px; /* Reduced padding */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/* Responsive adjustments for text and images */
 .car-image {
-  max-width: 100%;
-  max-height: 100px; /* Set a max height for images */
-  object-fit: contain; /* Adjust this as needed */
+  width: 80%; /* Shrinking the car image */
+  height: auto;
+  border-radius: 50%; /* Makes the image round */
+  display: block; /* Ensures the image does not take more space than its intrinsic size */
+  margin: 0 auto; /* Centers the image */
 }
 
-.car-info {
-  padding: 8px; /* Reduced padding */
+.car-status, .battery-percentage, .car-in-out {
+  font-size: 1rem; /* Adjust font size as needed */
+}
+
+.status-clean, .status-dirty, .battery-high, .battery-low {
+  font-weight: bold;
+}
+
+/* Ensure links are visibly distinct */
+.navigation-links a {
+  color: #dcdcdc;
+  text-decoration: none;
+  padding: 0.5vh 1vw;
+  background: #555;
+  border-radius: 4px;
+}
+
+/* Adjustments for smaller screens, stack the car items */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.battery-indicator {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: grey;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  flex-grow: 1; /* Allow car info to grow */
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
 }
 
-.car-vin {
-  background: #00457C;
-  color: #ffffff;
-  text-align: center;
-  padding: 4px 0; /* Reduced padding */
-  margin-top: auto;
-  font-weight: bold;
-  font-size: 0.85rem; /* Adjust font size */
+.battery-indicator-fill {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  clip: rect(0px, 50px, 100px, 0px);
+  background-color: green;
+  transform-origin: center bottom;
 }
 
-/* Ensure that text doesn't overflow its container */
-.text-ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.status-clean {
-  color: green;
-  font-family: inherit;
-  font-weight: bold;
-}
-
-.status-dirty {
-  color: red;
-    font-weight: bold;
-
-}
-
-.battery-high {
-  color: green;
-    font-weight: bold;
-
-}
-
-.battery-low {
-  color: red;
-    font-weight: bold;
-
-}
-
-.location-in {
-  color: green;
-    font-weight: bold;
-
-}
-
-.location-out {
-  color: red;
-    font-weight: bold;
-
+.battery-percentage-text {
+  position: absolute;
+  z-index: 2;
 }
