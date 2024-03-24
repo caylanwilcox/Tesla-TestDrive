@@ -270,6 +270,7 @@ button {
 .batteryPercentage{
   width:38px;
   text-align:center;
+  font-size: 1.1em; /* Smaller font sizes for table content */
 }
   table {
     font-size: 0.85rem; /* Adjust table font size for readability */
@@ -279,10 +280,8 @@ button {
     padding: 6px; /* Reduce padding in table headers and cells */
     padding-right: 10px; /* Right padding */
   padding-left: 10px; /* Left padding */
+  font-size: 0.8em; /* Smaller font sizes for table content */
   }
   th:first-child, td:first-child {
-  border-right: 1px solid #ccc; /* Adjust color and width as needed */
-
-
-}
+  border-right: 1px solid #ccc; /* Adjust color and width as needed */}
 }
