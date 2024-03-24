@@ -1,16 +1,22 @@
 /* CleanDirtyToggle.css */
-
 .toggle-button {
-  padding: 8px 16px;
+  display: inline-flex; /* Flex container, inline to fit into table layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+
+  padding: 8px 16px;    
   border: 1px solid #ccc;
+  transition: all 0.3s ease;
+width:20%;
+height:20%;
   border-radius: 20px;
   cursor: pointer;
   outline: none;
   background-color: white;
   transition: all 0.3s ease;
   font-weight: bold;
-  /* Adjust the font size as needed */
-  font-size: 0.9em;
+  font-size: 0.9em; /* Adjust the font size as needed */
+  /* Remove text-align since it's no longer necessary with flexbox */
 }
 
 .toggle-button.clean {

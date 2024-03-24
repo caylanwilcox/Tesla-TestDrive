@@ -275,3 +275,10 @@ button {
     padding: 6px; /* Reduce padding in table headers and cells */
   }
 }
+@media screen and (max-width: 400px) and (min-width: 300px) {
+  .clean-status-button {
+    display: flex; /* Use flexbox to center the button */
+    justify-content: center; /* Center the button horizontally */
+    margin: 0 auto; /* Additional centering for block-level elements if needed */
+}
+}

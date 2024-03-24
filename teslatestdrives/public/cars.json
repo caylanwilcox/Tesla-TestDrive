@@ -1,16 +1,16 @@
 
 [
-  { "id": 724382, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"Model3","name": "WB319", "wheel":"19","color":"White" },
-    { "id": 718342, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"Model3","name": "WB318", "wheel":"18","color":"White" },
-    { "id": 717303, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"Model3","name": "RB319", "wheel":"19","color":"RED" },
-  { "id": 532624, "cleanStatus": true, "batteryPercentage": 75, "inOut": "out", "driver": "", "model":"ModelS","name": "WBS21", "wheel":"21","color":"WHITE" },
-    { "id": 502312, "cleanStatus": true, "batteryPercentage": 75, "inOut": "in", "driver": "", "model":"ModelS","name": "WBS21", "wheel":"21","color":"WHITE" },
+  { "id": "RF724382", "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"Model3","trim":"RWD","name": "WB319", "wheel":"19","color":"White" },
+    { "id": 718342, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"Model3", "trim":"RWD","name": "WB318", "wheel":"18","color":"White" },
+    { "id": 717303, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"Model3","trim":"RWD","name": "RB319", "wheel":"19","color":"RED" },
+  { "id": 532624, "cleanStatus": true, "batteryPercentage": 75, "inOut": "out", "driver": "", "model":"ModelS", "trim":"LR","name": "WBS21", "wheel":"21","color":"WHITE" },
+    { "id": 502312, "cleanStatus": true, "batteryPercentage": 75, "inOut": "in", "driver": "", "model":"ModelS", "trim":"LR","name": "WBS21", "wheel":"21","color":"WHITE" },
   { "id": 438797, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"ModelX", "trim":"LR", "name": "GBX20", "wheel":"20","color":"GREY" },
-    { "id": 217743, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"ModelY","name": "BBY19", "wheel":"19","color":"BLUE" },
+    { "id": 217743, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"ModelY","trim":"LR","name": "BBY19", "wheel":"19","color":"BLUE" },
   { "id": 225510, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"ModelY", "trim":"LR" ,"name": "BBY20", "wheel":"20","color":"BLUE" },
   { "id": 991378, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"ModelY", "trim":"LR","name": "GBY19", "wheel":"19","color":"GREY" },
-   { "id": "024490", "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"ModelY", "trim":"MY PERF","name": "GBYP21", "wheel":"21","color":"GREY" },
-  { "id": "006179", "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"ModelY","name": "GBYRW20", "wheel":"20","color":"GREY" },
+   { "id": "024490", "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"ModelY", "trim":"PERF","name": "GBYP21", "wheel":"21","color":"GREY" },
+  { "id": "006179", "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"ModelY","trim":"RWD","name": "GBYRW20", "wheel":"20","color":"GREY" },
   
   
   { "id": 985412, "cleanStatus": true, "batteryPercentage": 90, "inOut": "in", "driver": "", "model":"ModelY", "trim":"AWD", "name": "GBYRW20", "wheel":"20","color":"GREY" }

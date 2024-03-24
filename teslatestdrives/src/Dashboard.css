@@ -23,7 +23,21 @@
   flex-direction: column;
   overflow: hidden; /* Prevent scrolling within each model group */
 }
-
+.car-image-container {
+  /* Center the car image */
+  display: block;
+  margin: 10px auto; /* Space above and below the car image */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: calc(50% - 10px) center; /* Shifts the image to the left by 5px */  width: 200px; /* Or the size that fits your layout */
+  height: 125px; /* Or the size that maintains the image aspect ratio */
+  width: 264px;
+overflow:show;
+}
+.car-container{
+  display: flex;
+  justify-content: center;
+}
 .model-group-header {
   padding: 1vh 1vw;
   background-color: #444;
@@ -52,7 +66,14 @@
 }
 
 /* ... other styles ... */
-
+.vin-container{
+  margin-top:10px;
+  
+  font-size: 1.3em; /* A slightly smaller font-size can look more professional */
+  font-weight: 600; /* Semi-bold for importance, but not as heavy as bold */
+  text-align: center; /* Center aligns the VIN text */
+  letter-spacing: 0.1em; /* Slight letter-spacing can improve legibility */
+}
 /* Individual car items */
 .grid-item {
   background-color: #242424;
@@ -60,6 +81,8 @@
   padding: 1vw;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative; /* Needed for absolute positioning of children */
+
 }
 
 /* Special layout for Model S and Model X for full screens */
@@ -87,6 +110,7 @@
   border-radius: 50%; /* Makes the image round */
   display: block; /* Ensures the image does not take more space than its intrinsic size */
   margin: 0 auto; /* Centers the image */
+  z-index: 45;
 }
 
 .car-status, .battery-percentage, .car-in-out {
@@ -138,4 +162,14 @@
 .battery-percentage-text {
   position: absolute;
   z-index: 2;
+}
+
+.trim-detail {
+  margin-left: 4px; /* Add space between the VIN and the trim detail */
+   padding: 5px; /* Add some space inside the container */
+  font-size: 0.6em; /* Optionally, adjust the font size */
+  color: #fff; /* Color of the text */
+  background: rgba(0, 3333, 0, 0.1); /* Semi-transparent background for legibility */
+  border-radius: 8px; /* Rounded corner opposite to the position */
+  font-weight: normal; /* Optional: adjust the font weight if necessary */
 }

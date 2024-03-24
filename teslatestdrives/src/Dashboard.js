@@ -39,6 +39,8 @@ const Dashboard = ({ inventory }) => {
   const getBatteryClass = (batteryPercentage) => batteryPercentage >= 70 ? 'battery-high' : 'battery-low';
   const getLocationClass = (inOut) => inOut === 'in' ? 'location-in' : 'location-out';
 
+
+
   // Calculate grid template columns based on inventory count
   const calculateGridTemplate = (itemsCount) => {
     if (itemsCount < 4) {
@@ -47,35 +49,33 @@ const Dashboard = ({ inventory }) => {
     return 'repeat(auto-fit, minmax(250px, 1fr))';
   };
 
+
+
+
+
+
+
   // Map inventory to render each car with a circular progress bar indicating the battery level
   const renderCarItem = (item) => {
     const progressBarSize = 100; // The overall size of the progress bar
-    const imageSize = progressBarSize * 2.8; // The size of the car image, relative to the progress bar
+    const imageSize = progressBarSize * 6; // The size of the car image, relative to the progress bar
     const isBatteryLow = item.batteryPercentage < 20; // Define what you consider a low battery
 
-    return (
-      <div key={item.id} className="grid-item">
-        <div className="car-container">
-          {/* The progress bar acts as a background for the car image */}
-          <CircularProgressWithTicks progress={item.batteryPercentage} size={progressBarSize} />
-                    <div className="car-vin">{item.trim} VIN: {item.id}</div>
-
-          <img 
-            src={item.imagePath} 
-            alt={`Car ${item.model}`} 
-            className="car-image"
-            style={{
-              width: `${imageSize}px`, // Set the car image size
-              // Positioning will be set by the CSS
-            }} 
-          />
-        </div>
-        <div className="car-info">
-        {isBatteryLow && <div className="low-battery-warning">Low Battery</div>}
-        </div>
+ return (
+    <div key={item.id} className="grid-item">
+      <div className="progress-bar-container">
+        <CircularProgressWithTicks progress={item.batteryPercentage} size={100} />
       </div>
-    );
-  };
+ <div className="vin-container">
+      VIN: {item.id} <span className="trim-detail">{item.trim}</span>
+    </div>      <div className="car-image-container" style={{ backgroundImage: `url(${item.imagePath})` }} />
+
+      {item.batteryPercentage < 20 && <div className="low-battery-warning">Low Battery</div>}
+    
+
+    </div>
+  );
+};
 
   // Extracted inventory for Model S and Model X
   const sxInventory = inventory.filter(item => item.model === 'ModelS' || item.model === 'ModelX');
