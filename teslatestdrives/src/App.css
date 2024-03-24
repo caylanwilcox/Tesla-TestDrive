@@ -277,5 +277,12 @@ button {
 
   th, td {
     padding: 6px; /* Reduce padding in table headers and cells */
+    padding-right: 10px; /* Right padding */
+  padding-left: 10px; /* Left padding */
   }
+  th:first-child, td:first-child {
+  border-right: 1px solid #ccc; /* Adjust color and width as needed */
+
+
+}
 }
