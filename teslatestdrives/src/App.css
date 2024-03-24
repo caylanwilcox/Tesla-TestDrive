@@ -104,6 +104,7 @@ th, td {
 }
 .batteryPercentage{
   width:50px;
+  text-align:center;
 }
 .inOut{
   width:70px;
@@ -266,7 +267,10 @@ button {
   .number-item .label {
     font-size: 0.85rem; /* Adjust font size for labels */
   }
-
+.batteryPercentage{
+  width:38px;
+  text-align:center;
+}
   table {
     font-size: 0.85rem; /* Adjust table font size for readability */
   }
@@ -274,11 +278,4 @@ button {
   th, td {
     padding: 6px; /* Reduce padding in table headers and cells */
   }
-}
-@media screen and (max-width: 400px) and (min-width: 300px) {
-  .clean-status-button {
-    display: flex; /* Use flexbox to center the button */
-    justify-content: center; /* Center the button horizontally */
-    margin: 0 auto; /* Additional centering for block-level elements if needed */
-}
 }

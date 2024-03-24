@@ -1,14 +1,14 @@
 /* CleanDirtyToggle.css */
+
 .toggle-button {
   display: inline-flex; /* Flex container, inline to fit into table layout */
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
-
   padding: 8px 16px;    
   border: 1px solid #ccc;
   transition: all 0.3s ease;
-width:20%;
-height:20%;
+  min-width: 70px; /* Set a min-width that maintains aspect ratio at 350px screen width */
+  max-width: 120px; /* Set a max-width for larger screens if needed */
   border-radius: 20px;
   cursor: pointer;
   outline: none;
@@ -16,7 +16,6 @@ height:20%;
   transition: all 0.3s ease;
   font-weight: bold;
   font-size: 0.9em; /* Adjust the font size as needed */
-  /* Remove text-align since it's no longer necessary with flexbox */
 }
 
 .toggle-button.clean {
@@ -30,4 +29,12 @@ height:20%;
 /* Hover effects */
 .toggle-button:hover {
   opacity: 0.8;
+}
+
+@media screen and (max-width: 400px) {
+  .toggle-button {
+    min-width: 52.5px; /* Example min-width adjustment for smaller screens */
+    padding: 8px; /* Adjust padding to maintain height */
+    font-size: 0.8em; /* Adjust font size for smaller screens */
+  }
 }
