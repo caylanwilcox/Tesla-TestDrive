@@ -3,7 +3,7 @@ import './App.css';
 import Header from './Header.js';
 import DashboardNumbers from './DashboardNumbers.js';
 import CleanDirtyToggle from './CleanDirtyToggle';
-import { ref, onValue, getDatabase } from 'firebase/database';
+import { ref, onValue, getDatabase, set, remove } from 'firebase/database';
 import { Route, Routes, Link } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import { database } from './firebase';
@@ -78,17 +78,26 @@ function App() {
     }
   };
   const handleToggleCleanStatus = (index) => {
-    setInventory(currentInventory => {
-      // Create a new copy of the inventory array
-      const newInventory = [...currentInventory];
-      // Toggle the clean status of the car at the specific index
-      newInventory[index] = {
-        ...newInventory[index],
-        cleanStatus: !newInventory[index].cleanStatus,
-      };
-      return newInventory; // Return the updated inventory array
+  setInventory(currentInventory => {
+    const newInventory = [...currentInventory];
+    const item = { ...newInventory[index] };
+
+    // Toggle the clean status
+    item.cleanStatus = !item.cleanStatus;
+
+    // Update the local state first
+    newInventory[index] = item;
+
+    // Then, update the item in the Firebase database
+    // Using the index as the key if the root is an array
+    const itemRef = ref(database, `${index}`);
+    set(itemRef, item).catch(error => {
+      console.error('Failed to update clean status in database:', error);
     });
-  };
+
+    return newInventory;
+  });
+};
   const handleSubmit = (e) => {
     e.preventDefault();
     setInventory((prev) => [...prev, { ...newEntry, id: Date.now() }]);
