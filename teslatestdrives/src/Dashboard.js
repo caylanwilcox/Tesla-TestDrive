@@ -61,9 +61,10 @@ const Dashboard = ({ inventory }) => {
     const progressBarSize = 100; // The overall size of the progress bar
     const imageSize = progressBarSize * 6; // The size of the car image, relative to the progress bar
     const isBatteryLow = item.batteryPercentage < 20; // Define what you consider a low battery
+  const isOut = item.inOut === 'out';
 
  return (
-    <div key={item.id} className="grid-item">
+    <div key={item.id} className={`grid-item ${isOut ? 'out' : ''}`} style={{ position: 'relative' }}>
       <div className="progress-bar-container">
         <CircularProgressWithTicks progress={item.batteryPercentage} size={100} />
       </div>
@@ -72,7 +73,12 @@ const Dashboard = ({ inventory }) => {
     </div>      <div className="car-image-container" style={{ backgroundImage: `url(${item.imagePath})` }} />
 
       {item.batteryPercentage < 20 && <div className="low-battery-warning">Low Battery</div>}
-    
+     {/* Overlay for "OUT" status */}
+      {isOut && (
+        <div className="overlay">
+          OUT
+        </div>
+      )}
 
     </div>
   );
