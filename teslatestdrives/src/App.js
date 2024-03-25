@@ -62,21 +62,35 @@ function App() {
 
   const [newEntry, setNewEntry] = useState({ cleanStatus: true, batteryPercentage: 100, inOut: 'in', driver: '' });
 
-    const handleChange = (e, index) => {
+  const handleChange = (e, index) => {
     const { name, value, type, checked } = e.target;
+    const updatedValue = type === 'checkbox' ? checked : value;
 
-    if (index === -1) { // This is for the new entry form
-      setNewEntry({
-        ...newEntry,
-        [name]: type === 'checkbox' ? checked : value,
-      });
-    } else { // This is for existing inventory items
-      const updatedInventory = [...inventory];
-      const item = updatedInventory[index];
-      item[name] = type === 'checkbox' ? checked : value;
-      setInventory(updatedInventory);
+    // Update the state for the new entry form
+    if (index === -1) {
+        setNewEntry({
+            ...newEntry,
+            [name]: updatedValue,
+        });
+    } else {
+        // Update the state and Firebase for existing inventory items
+        setInventory(currentInventory => {
+            const newInventory = [...currentInventory];
+            const item = { ...newInventory[index], [name]: updatedValue };
+
+            // Update Firebase database
+            const itemRef = ref(database, `${index}`); // Assuming index maps directly to the Firebase array index
+            set(itemRef, item).then(() => {
+                console.log('Firebase updated successfully');
+            }).catch(error => {
+                console.error('Failed to update item in Firebase:', error);
+            });
+
+            newInventory[index] = item;
+            return newInventory;
+        });
     }
-  };
+};
   const handleToggleCleanStatus = (index) => {
   setInventory(currentInventory => {
     const newInventory = [...currentInventory];
