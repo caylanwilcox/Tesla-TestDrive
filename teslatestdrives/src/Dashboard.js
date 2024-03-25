@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
+
+
 const CircularProgressWithTicks = ({ progress, size }) => {
   const ticks = [];
   const radius = size / 2;
@@ -35,6 +37,7 @@ const CircularProgressWithTicks = ({ progress, size }) => {
 };
 
 const Dashboard = ({ inventory }) => {
+  const [isNarrowScreen, setIsNarrowScreen] = useState(window.innerWidth < 800);
   const getStatusClass = (cleanStatus) => cleanStatus ? 'status-clean' : 'status-dirty';
   const getBatteryClass = (batteryPercentage) => batteryPercentage >= 70 ? 'battery-high' : 'battery-low';
   const getLocationClass = (inOut) => inOut === 'in' ? 'location-in' : 'location-out';
@@ -48,8 +51,6 @@ const Dashboard = ({ inventory }) => {
     }
     return 'repeat(auto-fit, minmax(250px, 1fr))';
   };
-
-
 
 
 

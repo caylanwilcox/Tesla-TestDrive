@@ -3,7 +3,7 @@ import './App.css';
 import Header from './Header.js';
 import DashboardNumbers from './DashboardNumbers.js';
 import CleanDirtyToggle from './CleanDirtyToggle';
-
+import { ref, onValue, getDatabase } from 'firebase/database';
 import { Route, Routes, Link } from 'react-router-dom';
 import Dashboard from './Dashboard';
 // Initial data for parking spots
@@ -11,19 +11,37 @@ import Dashboard from './Dashboard';
 function App() {
   
   const [inventory, setInventory] = useState([]);
-useEffect(() => {
-  fetch('/cars.json') // Assuming cars.json is in the public folder
-    .then(response => response.json())
-    .then(data => {
-      const inventoryWithImages = data.map(car => ({
-        ...car,
-       imagePath: `/images/${car.model}/${car.wheel}/${car.color}/${car.name}.png`
-//     
-}));
-      setInventory(inventoryWithImages);
-    })
-    .catch(error => console.error('Failed to load car data:', error));
-}, []);
+  useEffect(() => {
+    // Fetch static data from cars.json
+    fetch('/cars.json')
+      .then(response => response.json())
+      .then(staticData => {
+        // Now set up the Firebase listener
+        const dbRef = ref(getDatabase());
+        const unsubscribe = onValue(ref(dbRef, 'path/to/inventory'), (snapshot) => {
+          const dynamicData = snapshot.val();
+          
+          // Merge the Firebase data with the static image data
+          const inventoryWithImages = Object.keys(dynamicData).map((key) => {
+            const carDynamicData = dynamicData[key];
+            const carStaticData = staticData.find(car => car.id === carDynamicData.id);
+            
+            return {
+              ...carDynamicData,
+              imagePath: carStaticData 
+                ? `/images/${carStaticData.model}/${carStaticData.wheel}/${carStaticData.color}/${carStaticData.name}.png`
+                : '/images/default.png' // Fallback image path in case there's no matching entry in cars.json
+            };
+          });
+
+          setInventory(inventoryWithImages);
+        });
+
+        return () => unsubscribe();
+      })
+      .catch(error => console.error('Failed to load car data:', error));
+  }, []);
+
 
     // Function to replace and add VINsa
 
