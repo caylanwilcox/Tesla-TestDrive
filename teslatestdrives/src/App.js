@@ -6,42 +6,49 @@ import CleanDirtyToggle from './CleanDirtyToggle';
 import { ref, onValue, getDatabase } from 'firebase/database';
 import { Route, Routes, Link } from 'react-router-dom';
 import Dashboard from './Dashboard';
+import { database } from './firebase';
 // Initial data for parking spots
 
 function App() {
   
   const [inventory, setInventory] = useState([]);
-  useEffect(() => {
-    // Fetch static data from cars.json
-    fetch('/cars.json')
-      .then(response => response.json())
-      .then(staticData => {
-        // Now set up the Firebase listener
-        const dbRef = ref(getDatabase());
-        const unsubscribe = onValue(ref(dbRef, 'path/to/inventory'), (snapshot) => {
-          const dynamicData = snapshot.val();
-          
+ useEffect(() => {
+  // Fetch static data from cars.json
+  fetch('/cars.json')
+    .then(response => response.json())
+    .then(staticData => {
+      // Reference to the root of the Firebase database
+      const dbRef = ref(database); 
+      // Listen for value changes
+      const unsubscribe = onValue(dbRef, (snapshot) => {
+        const dynamicData = snapshot.val();
+        if (dynamicData && Array.isArray(dynamicData)) {
           // Merge the Firebase data with the static image data
-          const inventoryWithImages = Object.keys(dynamicData).map((key) => {
-            const carDynamicData = dynamicData[key];
+          const inventoryWithImages = dynamicData.map((carDynamicData) => {
+            // Find the corresponding static data
             const carStaticData = staticData.find(car => car.id === carDynamicData.id);
             
             return {
               ...carDynamicData,
+              // Add the image path from static data or use a default
               imagePath: carStaticData 
                 ? `/images/${carStaticData.model}/${carStaticData.wheel}/${carStaticData.color}/${carStaticData.name}.png`
-                : '/images/default.png' // Fallback image path in case there's no matching entry in cars.json
+                : '/images/default.png'
             };
           });
 
+          // Update state with the merged data
           setInventory(inventoryWithImages);
-        });
+        } else {
+          console.log('No data available');
+        }
+      });
 
-        return () => unsubscribe();
-      })
-      .catch(error => console.error('Failed to load car data:', error));
-  }, []);
-
+      // Cleanup the listener when the component unmounts
+      return () => unsubscribe();
+    })
+    .catch(error => console.error('Failed to load car data:', error));
+}, []);
 
     // Function to replace and add VINsa
 
