@@ -69,7 +69,7 @@ const Dashboard = ({ inventory }) => {
         <CircularProgressWithTicks progress={item.batteryPercentage} size={100} />
       </div>
  <div className="vin-container">
-      VIN: {item.id} <span className="trim-detail">{item.trim}</span>
+      VIN: {item.id} <span className="trim-detail">{item.trim} {item.wheel}"</span>
     </div>      <div className="car-image-container" style={{ backgroundImage: `url(${item.imagePath})` }} />
 
       {item.batteryPercentage < 20 && <div className="low-battery-warning">Low Battery</div>}
