@@ -12,7 +12,7 @@ import { database } from './firebase';
 function App() {
   
   const [inventory, setInventory] = useState([]);
- useEffect(() => {
+useEffect(() => {
   // Fetch static data from cars.json
   fetch('/cars.json')
     .then(response => response.json())
@@ -26,16 +26,25 @@ function App() {
           // Merge the Firebase data with the static image data
           const inventoryWithImages = dynamicData.map((carDynamicData) => {
             // Find the corresponding static data
-            const carStaticData = staticData.find(car => car.id === carDynamicData.id);
+const carStaticData = staticData.find(car => Number(car.id) === Number(carDynamicData.id));
+            // Construct image path
+            const imagePath = carStaticData 
+              ? `/images/${carStaticData.model}/${carStaticData.wheel}/${carStaticData.color}/${carStaticData.name}.png`
+              : '/images/default.png';
+            
+            // Log the image path for car with ID 724382
+            if (carDynamicData.id === 724382) {
+              console.log('Image path for car 724382:', imagePath);
+            }
             
             return {
               ...carDynamicData,
-              // Add the image path from static data or use a default
-              imagePath: carStaticData 
-                ? `/images/${carStaticData.model}/${carStaticData.wheel}/${carStaticData.color}/${carStaticData.name}.png`
-                : '/images/default.png'
+              imagePath, // Add the image path
             };
           });
+
+          // Log the entire inventory with images for debugging
+          console.log('Inventory with images:', inventoryWithImages);
 
           // Update state with the merged data
           setInventory(inventoryWithImages);
@@ -49,6 +58,7 @@ function App() {
     })
     .catch(error => console.error('Failed to load car data:', error));
 }, []);
+
 
     // Function to replace and add VINsa
 
