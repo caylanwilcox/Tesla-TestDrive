@@ -33,6 +33,7 @@
   height: 125px; /* Or the size that maintains the image aspect ratio */
   width: 264px;
 overflow:show;
+
 }
 .car-container{
   display: flex;
@@ -111,6 +112,7 @@ overflow:show;
   display: block; /* Ensures the image does not take more space than its intrinsic size */
   margin: 0 auto; /* Centers the image */
   z-index: 45;
+
 }
 
 .car-status, .battery-percentage, .car-in-out {
@@ -228,4 +230,66 @@ overflow:show;
   align-items: center;
   font-size: 20px; /* Adjust as necessary */
   font-weight: bold;
+}/* Responsive styling for tablet screens */
+
+@media screen and (max-width: 768px) {
+  .dashboard {
+    /* Adjust layout for smaller screen, if needed */
+  }
+
+  .dashboard-grid {
+    /* Change grid template columns to better fit smaller screens */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 5px;
+  }
+
+  .grid-item {
+    /* Adjust the size and margin of grid items for smaller screens */
+    margin: 10px;
+  }
+
+  .car-image-container,
+  .progress-bar-container {
+    /* Adjust size and positioning for smaller screens */
+    width: 150px;
+    height: 100px;
+  }
+
+  .car-image {
+    /* Adjust the image size to fit within the smaller grid items */
+    width: 100%;
+    height: auto;
+  }
+
+  .vin-container {
+    /* Adjust the font size and positioning of the VIN for readability */
+    font-size: 0.8em;
+  }
+}
+
+/* Adjustments for even smaller screens, like phones */
+@media screen and (max-width: 480px) {
+  .dashboard-grid {
+    /* Stack the items on smaller screens */
+    grid-template-columns: 1fr;
+  }
+
+  .car-image-container,
+  .progress-bar-container {
+    /* Further size adjustments for very small screens */
+    width: 120px;
+    height: 80px;
+  }
+
+  .car-image {
+    /* Ensure the image fits within the container on very small screens */
+    width: 80%;
+    height: auto;
+  }
+
+  /* Optionally hide or adjust elements that may not fit well on small screens */
+  .vin-container, 
+  .low-battery-warning {
+    display: none;
+  }
 }
