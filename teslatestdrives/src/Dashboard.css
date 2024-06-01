@@ -23,22 +23,7 @@
   flex-direction: column;
   overflow: hidden; /* Prevent scrolling within each model group */
 }
-.car-image-container {
-  /* Center the car image */
-  display: block;
-  margin: 10px auto; /* Space above and below the car image */
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: calc(50% - 10px) center; /* Shifts the image to the left by 5px */  width: 200px; /* Or the size that fits your layout */
-  height: 125px; /* Or the size that maintains the image aspect ratio */
-  width: 264px;
-overflow:show;
 
-}
-.car-container{
-  display: flex;
-  justify-content: center;
-}
 .model-group-header {
   padding: 1vh 1vw;
   background-color: #444;
@@ -52,29 +37,9 @@ overflow:show;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust column size as needed */
   gap: 10px;
-  overflow: hidden; /* Changed to hidden to prevent scrolling */
-}
-.battery-low .car-image {
-  /* Styles for low battery status, e.g., add a red border */
-  border: 2px solid red;
+  overflow: hidden; /* Prevent scrolling */
 }
 
-.low-battery-warning {
-  /* Style for the low battery warning text */
-  color: red;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-/* ... other styles ... */
-.vin-container{
-  margin-top:10px;
-  
-  font-size: 1.3em; /* A slightly smaller font-size can look more professional */
-  font-weight: 600; /* Semi-bold for importance, but not as heavy as bold */
-  text-align: center; /* Center aligns the VIN text */
-  letter-spacing: 0.1em; /* Slight letter-spacing can improve legibility */
-}
 /* Individual car items */
 .grid-item {
   background-color: #242424;
@@ -82,8 +47,55 @@ overflow:show;
   padding: 1vw;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    position: relative; /* Needed for absolute positioning of children */
+  position: relative; /* Needed for absolute positioning of children */
+}
 
+.grid-item.out {
+  filter: brightness(50%);
+}
+
+.car-image-container {
+  display: block;
+  margin: 10px auto; /* Space above and below the car image */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 200px; /* Or the size that fits your layout */
+  height: 125px; /* Or the size that maintains the image aspect ratio */
+}
+
+.car-container {
+  display: flex;
+  justify-content: center;
+}
+
+.vin-container {
+  margin-top: 10px;
+  font-size: 1.3em; /* A slightly smaller font-size can look more professional */
+  font-weight: 600; /* Semi-bold for importance, but not as heavy as bold */
+  text-align: center; /* Center aligns the VIN text */
+  letter-spacing: 0.1em; /* Slight letter-spacing can improve legibility */
+}
+
+.low-battery-warning {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px; /* Adjust as necessary */
+  font-weight: bold;
 }
 
 /* Special layout for Model S and Model X for full screens */
@@ -92,16 +104,6 @@ overflow:show;
   .model-X .dashboard-grid {
     grid-template-columns: repeat(2, 1fr); /* Two columns for Model S and X */
   }
-}
-.battery-high .car-status, .battery-high .car-vin {
-  color: #00ff00; /* Green color for high battery level */
-}
-.battery-low .car-status, .battery-low .car-vin {
-  color: #ff0000; /* Red color for low battery level */
-}
-/* Content inside each car item */
-.car-header, .car-info {
-  margin-bottom: 1vh;
 }
 
 /* Responsive adjustments for text and images */
@@ -112,32 +114,12 @@ overflow:show;
   display: block; /* Ensures the image does not take more space than its intrinsic size */
   margin: 0 auto; /* Centers the image */
   z-index: 45;
-
 }
 
-.car-status, .battery-percentage, .car-in-out {
-  font-size: 1rem; /* Adjust font size as needed */
+.battery-low .car-image {
+  border: 2px solid red; /* Styles for low battery status */
 }
 
-.status-clean, .status-dirty, .battery-high, .battery-low {
-  font-weight: bold;
-}
-
-/* Ensure links are visibly distinct */
-.navigation-links a {
-  color: #dcdcdc;
-  text-decoration: none;
-  padding: 0.5vh 1vw;
-  background: #555;
-  border-radius: 4px;
-}
-
-/* Adjustments for smaller screens, stack the car items */
-@media (max-width: 768px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-}
 .battery-indicator {
   width: 100px;
   height: 100px;
@@ -168,13 +150,95 @@ overflow:show;
 
 .trim-detail {
   margin-left: 4px; /* Add space between the VIN and the trim detail */
-   padding: 5px; /* Add some space inside the container */
+  padding: 5px; /* Add some space inside the container */
   font-size: 0.6em; /* Optionally, adjust the font size */
   color: #fff; /* Color of the text */
-  background: rgba(0, 3333, 0, 0.1); /* Semi-transparent background for legibility */
+  background: rgba(0, 0, 0, 0.1); /* Semi-transparent background for legibility */
   border-radius: 8px; /* Rounded corner opposite to the position */
   font-weight: normal; /* Optional: adjust the font weight if necessary */
-}@media screen and (max-width: 350px) {
+}
+
+.battery-high .car-status, .battery-high .car-vin {
+  color: #00ff00; /* Green color for high battery level */
+}
+
+.battery-low .car-status, .battery-low .car-vin {
+  color: #ff0000; /* Red color for low battery level */
+}
+
+.car-header, .car-info {
+  margin-bottom: 1vh;
+}
+
+.car-status, .battery-percentage, .car-in-out {
+  font-size: 1rem; /* Adjust font size as needed */
+}
+
+.status-clean, .status-dirty, .battery-high, .battery-low {
+  font-weight: bold;
+}
+
+/* Ensure links are visibly distinct */
+.navigation-links a {
+  color: #dcdcdc;
+  text-decoration: none;
+  padding: 0.5vh 1vw;
+  background: #555;
+  border-radius: 4px;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto; /* Allow vertical scrolling */
+  }
+
+  .grid-item {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    height: 300px; /* Adjust height to make items rectangular */
+  }
+}
+
+/* Specific styles for iPhone screens */
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 5px;
+  }
+
+  .model-group-header {
+    font-size: 1em;
+  }
+
+  .grid-item {
+    padding: 5px;
+    height: auto;
+  }
+
+  .car-image-container {
+    height: 150px;
+    width: 100%;
+  }
+
+  .vin-container {
+    font-size: 0.9em;
+  }
+
+  .trim-detail {
+    font-size: 0.7em;
+  }
+
+  .overlay {
+    font-size: 1.2em;
+  }
+}
+
+/* Ultra small screens (e.g., iPhone SE) */
+@media (max-width: 350px) {
   .dashboard-grid {
     display: flex;
     flex-direction: column;
@@ -198,10 +262,6 @@ overflow:show;
     background-position: center center;
   }
 
-  .battery-indicator {
-    /* Style as needed */
-  }
-
   .vin-trim-container {
     text-align: center;
     /* Add other styles as needed */
@@ -211,85 +271,5 @@ overflow:show;
     /* Common styles for text content */
     font-size: 0.8rem;
     margin: 5px 0;
-  }
-}
-.grid-item.out {
-  filter: brightness(50%);
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px; /* Adjust as necessary */
-  font-weight: bold;
-}/* Responsive styling for tablet screens */
-
-@media screen and (max-width: 768px) {
-  .dashboard {
-    /* Adjust layout for smaller screen, if needed */
-  }
-
-  .dashboard-grid {
-    /* Change grid template columns to better fit smaller screens */
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 5px;
-  }
-
-  .grid-item {
-    /* Adjust the size and margin of grid items for smaller screens */
-    margin: 10px;
-  }
-
-  .car-image-container,
-  .progress-bar-container {
-    /* Adjust size and positioning for smaller screens */
-    width: 150px;
-    height: 100px;
-  }
-
-  .car-image {
-    /* Adjust the image size to fit within the smaller grid items */
-    width: 100%;
-    height: auto;
-  }
-
-  .vin-container {
-    /* Adjust the font size and positioning of the VIN for readability */
-    font-size: 0.8em;
-  }
-}
-
-/* Adjustments for even smaller screens, like phones */
-@media screen and (max-width: 480px) {
-  .dashboard-grid {
-    /* Stack the items on smaller screens */
-    grid-template-columns: 1fr;
-  }
-
-  .car-image-container,
-  .progress-bar-container {
-    /* Further size adjustments for very small screens */
-    width: 120px;
-    height: 80px;
-  }
-
-  .car-image {
-    /* Ensure the image fits within the container on very small screens */
-    width: 80%;
-    height: auto;
-  }
-
-  /* Optionally hide or adjust elements that may not fit well on small screens */
-  .vin-container, 
-  .low-battery-warning {
-    display: none;
   }
 }
